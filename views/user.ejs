@@ -1,2 +1,13 @@
-<h1>User Profile</h1>
-<h1><%= user%></h1>
+<head>
+    
+</head>
+<body>
+    
+    <h2>Welcome <%= user.name%> !</h2>
+    <h2>Posts</h2>
+    <form  action="/user/post-comment" method="Post" id="new-post-form">
+        <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
+        <input type="submit">
+    </form>
+</body>
+

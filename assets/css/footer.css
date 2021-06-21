@@ -1,0 +1,13 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  /* Height of the footer */
+  background: #6d6c6c;
+}
+
+footer ul li {
+  list-style: none;
+  color: white;
+}

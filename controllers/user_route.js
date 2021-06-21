@@ -1,4 +1,5 @@
 const User = require('../models/user_schema');
+const Post = require('../models/post');
 
 module.exports.user = function(req,res){
     return res.render('user',{
@@ -64,4 +65,17 @@ module.exports.destroySession = function(req, res){
     return res.redirect('/');
 
 }
+
+module.exports.createContent = function(req,res){
+    Post.create(req.body,function(err,content){
+        if(err){
+            console.log("Error while creating the content!")
+            return;
+        }
+        return res.render('user');
+
+    });
+}
+
+
 

@@ -1,26 +1,31 @@
 <header>
-    <h1>Header</h1>
-    <ul>
         <% if(locals.user) {%>
-            <li>
-                <%= locals.user.name.toUpperCase() %>
+            <div class="header-code">
+                <div>
+                    <%= locals.user.name.toUpperCase() %>
+    
+                </div>
+                <div>
+                    <a href="/user/sign-out" >Sign Out</a>
+                </div>
 
-            </li>
-            <li>
-                <a href="/user/sign-out" >Sign Out</a>
-            </li>
+            </div>
+            
             
         
         <% }else{ %>
 
-            <li>
-                <a href="/user/sign-in" >Sign In</a>
-            </li>
-            <li>
-                <a href="/user/sign-up" >Sign Up</a>
-            </li>
+            <div class="header-code">
+                <div>
+                    Code Social
+                </div>
+                <div>
+                    <a href="/user/sign-in" >Sign In</a>
+                    <a href="/user/sign-up" >Sign Up</a>
+                </div>
+
+            </div>
 
         <% } %>
-    </ul>
 
 </header>

@@ -1,0 +1,25 @@
+header {
+  height: 50px;
+}
+
+header .header-code {
+  display: flex;
+  height: fit-content;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1515f5;
+  position: sticky;
+  top: 2px;
+  height: inherit;
+  vertical-align: top;
+}
+
+header .header-code div {
+  padding: 10px;
+  color: white;
+}
+
+header .header-code a {
+  color: white;
+  text-decoration: none;
+}

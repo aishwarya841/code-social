@@ -9,12 +9,22 @@ const session = require('express-session');
 const passport  = require('passport');
 const localStrategy = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
+const sassMiddleWare = require('node-sass-middleware');
+
+app.use(sassMiddleWare({
+    src : './assets/scss',
+    dest : './assets/css',
+    outputStyle : 'expanded',
+    prefix : '/css',
+    debug : true
+
+}));
 
 app.use(express.urlencoded());
 
 //for cookie parser
 app.use(cookieParser());
-
+app.use(express.static('./assets'))
 //for express-ejs-layouts
 app.use(expressLayout);
 app.set("layout extractScripts", true);
