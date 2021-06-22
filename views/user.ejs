@@ -5,9 +5,21 @@
     
     <h2>Welcome <%= user.name%> !</h2>
     <h2>Posts</h2>
-    <form  action="/user/post-comment" method="Post" id="new-post-form">
+    <form  action="/posts/post-comment" method="Post" id="new-post-form">
         <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
         <input type="submit">
     </form>
+    <div id="post-content-container">
+        <ul>
+            <% for(post of posts){%>
+            <li><%= post.content %>
+                <small><%= post.user.name %></small>
+            </li>
+            
+
+            <%}%>
+        </ul>
+
+    </div>
 </body>
 

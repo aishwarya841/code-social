@@ -2,10 +2,22 @@ const User = require('../models/user_schema');
 const Post = require('../models/post');
 
 module.exports.user = function(req,res){
-    return res.render('user',{
-        title:"User Profile",
-        user : res.locals.user
-    });
+    // return res.render('user',{
+    //     title:"User Profile",
+    //     user : res.locals.user
+    // });
+    Post.find({}).populate("user").exec(function(err,content){
+        if(err){
+            console.log("Error finding in post!")
+            return res.redirect('back');
+        }
+        return res.render('user',{
+                title:"User Profile",
+                user : res.locals.user,
+                posts : content
+            });
+        
+    })
 };
 
 module.exports.signup = function(req, res){
@@ -66,16 +78,7 @@ module.exports.destroySession = function(req, res){
 
 }
 
-module.exports.createContent = function(req,res){
-    Post.create(req.body,function(err,content){
-        if(err){
-            console.log("Error while creating the content!")
-            return;
-        }
-        return res.render('user');
 
-    });
-}
 
 
 
