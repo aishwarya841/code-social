@@ -1,24 +1,53 @@
 const User = require('../models/user_schema');
 const Post = require('../models/post');
+const Comment = require('../models/comments');
 
-module.exports.user = function(req,res){
-    // return res.render('user',{
-    //     title:"User Profile",
-    //     user : res.locals.user
-    // });
-    Post.find({}).populate("user").exec(function(err,content){
-        if(err){
-            console.log("Error finding in post!")
-            return res.redirect('back');
-        }
-        return res.render('user',{
-                title:"User Profile",
-                user : res.locals.user,
-                posts : content
-            });
+
+module.exports.user = async function(req,res){
+
+    try{
+
+    }catch(err){
+        console.log(err);
+    }
+  
+    let posts  =  await Post.find({})
+    .populate('user')
+    .populate({
+      path: 'comments',
+      // Get friends of friends - populate the 'friends' array for every friend
+      populate: { path: 'user' }
+    });
+
+    let users = await User.find({});
+
+    return res.render('user',{
+        title:"User Profile",
+        user : res.locals.user,
+        posts : posts,
+        all_users : users
+    });
+            
         
-    })
+        
+   
 };
+
+module.exports.profile = async function(req,res){
+    try{
+
+        let user = await User.findById(req.params.id);
+        return res.render('profile',{
+            profileUser:user,
+        });
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
+
+
 
 module.exports.signup = function(req, res){
     if(req.isAuthenticated()){

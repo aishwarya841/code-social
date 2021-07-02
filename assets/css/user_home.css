@@ -1,0 +1,23 @@
+#container {
+  height: 100%;
+  display: flex;
+}
+
+#container #post-section {
+  width: 70%;
+}
+
+#container #user-section {
+  width: 30%;
+  border-left: 1px solid lightgray;
+  height: 100%;
+}
+
+#container #user-section a {
+  text-decoration: none;
+  color: black;
+}
+
+#container #user-section a li {
+  list-style-type: disc;
+}

@@ -1,25 +1,45 @@
 <head>
+    <link rel="stylesheet" href="/css/user_home.css">
     
 </head>
 <body>
     
     <h2>Welcome <%= user.name%> !</h2>
-    <h2>Posts</h2>
-    <form  action="/posts/post-comment" method="Post" id="new-post-form">
-        <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
-        <input type="submit">
-    </form>
-    <div id="post-content-container">
-        <ul>
-            <% for(post of posts){%>
-            <li><%= post.content %>
-                <small><%= post.user.name %></small>
-            </li>
+    
+    <div id="container">
+        <section id="post-section">
+            <h2>Posts</h2>
+            <form  action="/posts/post-comment" method="Post" id="new-post-form">
+                <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
+                <input type="submit">
+            </form>
+            <div id="post-content-container">
+                <ul>
+                    <% for(post of posts){%>
+                        
+                        <%- include('_post')-%>        
+                    
+        
+                    <%}%>
+                </ul>
+        
+            </div>
+
+        </section>
+        <section id="user-section">
             
-
-            <%}%>
-        </ul>
-
+            <div id="all-users-container"> 
+                <ul>
+                    <% for(user of all_users){%>
+                        
+                        <a href="/user/personal-profile/<%= user._id%>"><li><b><%= user.name%></b></li> </a>    
+                    
+        
+                    <%}%>
+                </ul>
+        
+            </div>
+        </section>
     </div>
 </body>
 
