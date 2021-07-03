@@ -3,9 +3,6 @@
     
 </head>
 <body>
-    
-    <h2>Welcome <%= user.name%> !</h2>
-    
     <div id="container">
         <section id="post-section">
             <h2>Posts</h2>
@@ -30,9 +27,10 @@
             
             <div id="all-users-container"> 
                 <ul>
-                    <% for(user of all_users){%>
-                        
-                        <a href="/user/personal-profile/<%= user._id%>"><li><b><%= user.name%></b></li> </a>    
+                    <% for(users of all_users){%>
+                        <% if(users.id != user.id){ %>
+                        <a href="/user/personal-profile/<%= users._id%>"><li><b><%= users.name%></b></li> </a>  
+                        <%}%>  
                     
         
                     <%}%>
@@ -41,5 +39,6 @@
             </div>
         </section>
     </div>
+    
 </body>
 

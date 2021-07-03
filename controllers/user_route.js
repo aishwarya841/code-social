@@ -95,6 +95,9 @@ module.exports.create = function(req, res){
 
 //create the user session data
 module.exports.createSession = function(req,res){
+    req.flash("success","Logged in successfully");
+
+
     return res.redirect('/user/profile');
 
 };
@@ -103,6 +106,7 @@ module.exports.createSession = function(req,res){
 
 module.exports.destroySession = function(req, res){
     req.logout();
+    req.flash("success","Logged out successfully");
     return res.redirect('/');
 
 }

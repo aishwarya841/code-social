@@ -10,6 +10,8 @@ const passport  = require('passport');
 const localStrategy = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleWare = require('node-sass-middleware');
+const  flash = require('connect-flash');
+const customMiddleWare = require('./config/middleware');
 
 app.use(sassMiddleWare({
     src : './assets/scss',
@@ -58,6 +60,13 @@ app.use(passport.initialize());
 
 //start session on passport
 app.use(passport.session());
+
+//setting up connect flash msg to show the flash notifications with the help of noty and connect -flash
+app.use(flash());
+
+app.use(customMiddleWare.setFlash);
+
+
 
 //set authenticated User
 

@@ -2,7 +2,7 @@
         <% if(locals.user) {%>
             <div class="header-code">
                 <div>
-                    <%= locals.user.name.toUpperCase() %>
+                    <a href="/user/personal-profile/<%= locals.user._id%>"><b><%= locals.user.name.toUpperCase() %></b></a>   
     
                 </div>
                 <div>
