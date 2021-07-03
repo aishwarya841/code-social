@@ -8,9 +8,10 @@ module.exports.createContent = function(req,res){
         user : req.user._id
     },function(err,content){
         if(err){
-            console.log("Error while creating the content!")
+            req.flash("error",err);
             return;
         }
+        req.flash("success","Post Created!");
         return res.redirect('/user/profile');
 
     });
@@ -21,6 +22,7 @@ module.exports.delete = function(req, res){
         if(post){
             if(post.user == req.user.id){
                 post.remove();
+                req.flash("success","Post Deleted!");
                 Comment.deleteMany({post : req.params.id},function(err){
                     return res.redirect('back');
                 });
@@ -30,6 +32,7 @@ module.exports.delete = function(req, res){
             
            
         }else{
+            req.flash("error","Post can't be Deleted!");
             return res.redirect('/user/profile');
         }
        
