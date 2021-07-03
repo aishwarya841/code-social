@@ -1,0 +1,21 @@
+#container{
+    height: 100%;
+    display:flex;
+    #post-section{
+        width:70%;
+    }
+    #user-section{
+        width:30%;
+        border-left: 1px solid lightgray;
+        height: 100%;
+        a{
+            text-decoration: none;
+            color: black;
+            li{
+                list-style-type:disc;
+    
+            }
+        }
+
+    }
+}

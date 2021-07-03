@@ -1,0 +1,12 @@
+<li><p>
+    <%= post.content %>
+    <small><%= post.user.name %></small>
+    <% if (locals.user && locals.user.id == post.user.id){%>
+        <a href="/posts/delete/<%= post._id %>">Delete</a>
+    <%}%>
+</p>
+</li>
+<div class="comment-content-container">
+    <%- include('_comments')-%>
+
+</div>

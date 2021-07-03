@@ -1,13 +1,44 @@
 <head>
+    <link rel="stylesheet" href="/css/user_home.css">
     
 </head>
 <body>
+    <div id="container">
+        <section id="post-section">
+            <h2>Posts</h2>
+            <form  action="/posts/createPost" method="Post" id="new-post-form">
+                <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
+                <input type="submit">
+            </form>
+            <div id="post-content-container">
+                <ul>
+                    <% for(post of posts){%>
+                        
+                        <%- include('_post')-%>        
+                    
+        
+                    <%}%>
+                </ul>
+        
+            </div>
+
+        </section>
+        <section id="user-section">
+            
+            <div id="all-users-container"> 
+                <ul>
+                    <% for(users of all_users){%>
+                        <% if(users.id != user.id){ %>
+                        <a href="/user/personal-profile/<%= users._id%>"><li><b><%= users.name%></b></li> </a>  
+                        <%}%>  
+                    
+        
+                    <%}%>
+                </ul>
+        
+            </div>
+        </section>
+    </div>
     
-    <h2>Welcome <%= user.name%> !</h2>
-    <h2>Posts</h2>
-    <form  action="/user/post-comment" method="Post" id="new-post-form">
-        <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
-        <input type="submit">
-    </form>
 </body>
 
