@@ -1,8 +1,8 @@
-<li><p>
+<li id="post-<%= post._id %>"><p>
     <%= post.content %>
     <small><%= post.user.name %></small>
     <% if (locals.user && locals.user.id == post.user.id){%>
-        <a href="/posts/delete/<%= post._id %>">Delete</a>
+        <a class="deletePostButton" href="/posts/delete/<%= post._id %>">Delete</a>
     <%}%>
 </p>
 </li>
@@ -10,3 +10,4 @@
     <%- include('_comments')-%>
 
 </div>
+<script src="/js/home_post.js"></script>

@@ -29,8 +29,9 @@ app.use(cookieParser());
 app.use(express.static('./assets'))
 //for express-ejs-layouts
 app.use(expressLayout);
-app.set("layout extractScripts", true);
+
 app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
 
 //for session cookie
 app.use(session({
