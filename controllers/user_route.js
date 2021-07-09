@@ -113,19 +113,36 @@ module.exports.destroySession = function(req, res){
 
 }
 
-module.exports.update = function(req,res){
-    console.log(req.body);
+module.exports.update = async function(req,res){
+    if(req.user.id == req.params.id){
+        try{
+            let user = await User.findByIdAndUpdate(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){console.log(err);return res.redirect('back');}
 
-    
-    if(user.id == req.body.id){
+                user.email = req.body.email;
+                console.log(req.body)
+                if(req.file){
+                    //Saving the path of the uploaded file in the user document
+                    console.log(req.file);
+                    user.avatar = User.avatarPath+"/"+req.file.filename;
+
+                }
+                user.save();
+                return res.redirect('back');
+
+
+            });
+
+        }catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+
+        }
         
-        User.findByIdAndUpdate(req.body.id, req.body,function(err,user){
-            req.flash('success','Updated');
-            return req.redirect('back');
-        })
     }else{
         req.flash('error','Unauthorized');
-        return req.redirect('back');
+        return res.redirect('back');
     }
 }
 

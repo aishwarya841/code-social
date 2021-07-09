@@ -1,12 +1,11 @@
-<h1>
-    Welcome <%= profileUser.name %>
-</h1>
+<image src="<%= profileUser.avatar %>" style="width:100px;border-radius: 50%;"> 
 
+</image>
 <% if(user.id == userId){%>
-    <form action="/user/personal-profile-update" method="POST">
-        <input type="email" name="email" placeholder="Your Email" required><br>
-        <input type="hidden" id="<%= userId%>">
-        <input type="password" name="password" placeholder="Your password" required><br>
+    <form action="/user/personal-profile-update/<%= userId%>" method="POST" enctype="multipart/form-data">
+        <input type="email" name="email" placeholder="Your Email" value="<%= profileUser.email %>" required><br>
+        <input type="file" placeholder="Profile Picture" name="avatar">
+        <input type="password" name="password" placeholder="Your password" value="<%= profileUser.password %>" required><br>
         <input type="submit" value="Update">
     
     </form>

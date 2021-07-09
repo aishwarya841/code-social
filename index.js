@@ -80,6 +80,9 @@ app.use(passport.setAuthenticatedUser);
 
 app.use('/',require('./routes/index'));
 
+//path to use uploads
+app.use('/uploads',express.static(__dirname+'/uploads'));
+
 //set up the views
 app.set('view engine','ejs');
 app.set('views','./views');
