@@ -1,3 +1,14 @@
 <h1>
     Welcome <%= profileUser.name %>
 </h1>
+
+<% if(user.id == userId){%>
+    <form action="/user/personal-profile-update" method="POST">
+        <input type="email" name="email" placeholder="Your Email" required><br>
+        <input type="hidden" id="<%= userId%>">
+        <input type="password" name="password" placeholder="Your password" required><br>
+        <input type="submit" value="Update">
+    
+    </form>
+
+<%}%>

@@ -40,6 +40,7 @@ module.exports.profile = async function(req,res){
         let user = await User.findById(req.params.id);
         return res.render('profile',{
             profileUser:user,
+            userId : req.params.id
         });
     }catch(err){
         console.log(err);
@@ -110,6 +111,22 @@ module.exports.destroySession = function(req, res){
     req.flash("success","Logged out successfully");
     return res.redirect('/');
 
+}
+
+module.exports.update = function(req,res){
+    console.log(req.body);
+
+    
+    if(user.id == req.body.id){
+        
+        User.findByIdAndUpdate(req.body.id, req.body,function(err,user){
+            req.flash('success','Updated');
+            return req.redirect('back');
+        })
+    }else{
+        req.flash('error','Unauthorized');
+        return req.redirect('back');
+    }
 }
 
 

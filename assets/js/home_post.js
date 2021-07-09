@@ -4,7 +4,14 @@
     let createPost = function(){
         let newPostForm = $("#new-post-form");
         newPostForm.submit(function(e){
+            var me = $(this);
             e.preventDefault();
+
+            if ( me.data('requestRunning') ) {
+                return;
+            }
+
+            me.data('requestRunning', true);
             
             $.ajax({
                 type : 'post',
@@ -18,6 +25,8 @@
                 },error : function(err){
                     console.log(err.responseText);
 
+                },complete: function() {
+                    me.data('requestRunning', false);
                 }
 
             })

@@ -48,8 +48,9 @@ module.exports.createContent = async function(req, res){
             content: req.body.content,
             user: req.user._id
         });
-        
+        // post = await post.populate('user', 'name').execPopulate();
         if (req.xhr){
+            //post = await post.populate('user', 'name').execPopulate();
             return res.status(200).json({
                 data: {
                     post: post
@@ -62,7 +63,7 @@ module.exports.createContent = async function(req, res){
         return res.redirect('back');
 
     }catch(err){
-        req.flash('error', err);
+        req.flash('error', JSON.stringify(err));
         return res.redirect('back');
     }
   

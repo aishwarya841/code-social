@@ -4,8 +4,9 @@
 <div id="container">
     <section id="post-section">
         <h2>Posts</h2>
-        <form  action="/posts/createPost" method="Post" id="new-post-form">
+        <form  action="/posts/createPost" method="Post" enctype="multipart/form-data" id="new-post-form">
             <textarea cols="30" rows="3" placeholder="Your texts here..." name="content"></textarea>
+            <input type="file" placeholder="Profile Picture" name="avatar">
             <input type="submit">
         </form>
         <div id="post-content-container">
